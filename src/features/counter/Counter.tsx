@@ -1,6 +1,6 @@
 import type { RootState } from '../../app/store'
 import { useSelector, useDispatch } from 'react-redux'
-import { decrement, increment, incrementByAmount } from './counterSlice'
+import { decrement, increment, incrementByAmount, incrementAsync } from './counterSlice'
 
 export function Counter() {
   const count = useSelector((state: RootState) => state.counter.value)
@@ -30,6 +30,12 @@ export function Counter() {
           onClick={() => dispatch(incrementByAmount(10))}
         >
           increment amount
+        </button>
+        <button
+          aria-label="increment async value"
+          onClick={() => dispatch(incrementAsync())}
+        >
+          increment async
         </button>
       </div>
     </div>

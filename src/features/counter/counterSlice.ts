@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 
 export interface CounterState {
@@ -27,7 +27,24 @@ export const counterSlice = createSlice({
       state.value += action.payload
     },
   },
+
+  extraReducers(builder) {
+    builder.addCase(incrementAsync.fulfilled, (state, action) => {
+      state.value += action.payload
+    })
+  }
 })
+
+export const incrementAsync = createAsyncThunk(
+  'counter/fetchByIdStatus',
+  () => {
+    return new Promise<number>(resolve => {
+      setTimeout(() => {
+        resolve(1)
+      },1000)
+    })
+  }
+)
 
 // Action creators are generated for each case reducer function
 export const { increment, decrement, incrementByAmount } = counterSlice.actions
