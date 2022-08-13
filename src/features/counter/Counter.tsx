@@ -1,10 +1,11 @@
 import type { RootState } from '../../app/store'
 import { useSelector, useDispatch } from 'react-redux'
 import { decrement, increment, incrementByAmount, incrementAsync } from './counterSlice'
+import { useAppDispatch } from '../../app/hooks'
 
 export function Counter() {
   const count = useSelector((state: RootState) => state.counter.value)
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   //useSelectorとuseDispatchを使うことでstoreの中身を使えるようにできる。
   //storeを子コンポーネントで使いたいときに使用するのがuseSelectorとuseDispatchになる。
